@@ -26,7 +26,7 @@ export default function EmployeeList() {
           </h1>
           <div className="flex justify-end">
             <button className="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600">
-              Add New Employee
+              Add Employee
             </button>
           </div>
         </div>
