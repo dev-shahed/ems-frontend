@@ -1,21 +1,28 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { getEmployee } from "../services/EmployeeService";
+import Skeleton from "./Skeleton";
 
 export default function EmployeeList() {
   const [employee, setEmployee] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  console.log(employee);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await getEmployee();
         setEmployee(response.data);
       } catch (error) {
         console.error("Error fetching employee data:", error);
       }
+      setLoading(false);
     };
     fetchData();
   }, []);
+
+  if (isLoading) return <Skeleton />;
 
   return (
     <section>
