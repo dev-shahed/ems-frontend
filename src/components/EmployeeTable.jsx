@@ -34,11 +34,11 @@ export default function EmployeeTable({ employees, setEmployee }) {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteEmployeeById(emp.id)
-          .then(() => {
+          .then((res) => {
             // Show a success message after successful deletion
             Swal.fire({
               title: "Deleted!",
-              text: "Employee has been deleted.",
+              text: res.data.message,
               icon: "success",
             });
             //updating state..
@@ -46,12 +46,11 @@ export default function EmployeeTable({ employees, setEmployee }) {
               prevEmployees.filter((e) => e.id !== emp.id)
             );
           })
-          .catch((error) => {
+          .catch((res) => {
             // Handle error if deletion fails
-            console.error("Error deleting employee:", error);
             Swal.fire({
               title: "Error",
-              text: "Failed to delete employee.",
+              text: res.data.error,
               icon: "error",
             });
           });
