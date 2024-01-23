@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { createEmployee } from "../services/EmployeeService";
 
 const Input = ({ label, name, type, placeholder, onChange }) => (
   <div className="mt-4">
@@ -11,11 +14,13 @@ const Input = ({ label, name, type, placeholder, onChange }) => (
       name={name}
       placeholder={placeholder}
       onChange={onChange}
+      required
     />
   </div>
 );
 
 export default function AddEmployee() {
+  const navigator = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,9 +32,24 @@ export default function AddEmployee() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const saveEmployee = (e) => {
+  const saveEmployee = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await createEmployee(formData);
+      if (response.status == 201) {
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Employee created successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          navigator("/");
+        });
+      }
+    } catch (error) {
+      console.error("Error creating employee:", error);
+    }
   };
 
   return (

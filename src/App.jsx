@@ -7,7 +7,7 @@ export default function App() {
     <Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<EmployeeList />}></Route>
+          <Route path="" element={<EmployeeList />}></Route>
         </Routes>
         <Routes>
           <Route path="/add-employee" element={<AddEmployee />}></Route>

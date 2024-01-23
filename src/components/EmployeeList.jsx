@@ -24,18 +24,10 @@ export default function EmployeeList() {
     fetchData();
   }, []);
 
-  //if (isLoading) return <Skeleton />;
-
   //Implement logic for adding a new employee
   const handleAddEmployee = () => {
     navigator("add-employee");
   };
-
-  // Implement logic for editing an employee (e.g., navigate to the edit page)
-  // const handleEditEmployee = (employeeId) => {};
-
-  // // Implement logic for deleting an employee
-  // const handleDeleteEmployee = (employeeId) => {};
 
   return (
     <>
@@ -79,7 +71,7 @@ export default function EmployeeList() {
                 {isLoading ? (
                   <Skeleton />
                 ) : (
-                  <EmployeeTable employees={employee} />
+                  <EmployeeTable employees={employee} setEmployee={setEmployee}/>
                 )}
               </table>
             </div>
