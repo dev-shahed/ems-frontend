@@ -1,8 +1,11 @@
 import axios from "axios";
 
-const REST_API_BASE_URL = !import.meta.env.DEV
-  ? import.meta.env.VITE_API_URL_PROD
-  : import.meta.env.VITE_API_URL_LOCAL
+let REST_API_BASE_URL;
+if (import.meta.env.VITE_APP_ENV === "local") {
+  REST_API_BASE_URL = import.meta.env.VITE_API_URL_LOCAL;
+} else {
+  REST_API_BASE_URL = import.meta.env.VITE_API_URL_PROD;
+}
 
 console.log(REST_API_BASE_URL);
 
