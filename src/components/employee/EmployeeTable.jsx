@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { deleteEmployeeById } from "../services/EmployeeService";
+import { deleteEmployeeById } from "../../services/EmployeeService";
 
 const TableCell = ({ children, className }) => (
   <td className={`px-6 py-4 ${className}`}>

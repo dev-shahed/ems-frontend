@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getEmployee } from "../services/EmployeeService";
+import { getEmployee } from "../../services/EmployeeService";
 import EmployeeTable from "./EmployeeTable";
 import Skeleton from "./Skeleton";
 

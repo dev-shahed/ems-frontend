@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AddEmployee from "./components/AddEmployee";
-import EmployeeList from "./components/EmployeeList";
+import AddEmployee from "./components/employee/AddEmployee";
+import EmployeeList from "./components/employee/EmployeeList";
 export default function App() {
   return (
     <Fragment>

@@ -5,7 +5,7 @@ import {
   createEmployee,
   getEmployeeById,
   updateEmployee,
-} from "../services/EmployeeService";
+} from "../../services/EmployeeService";
 
 const Input = ({ label, name, type, placeholder, onChange, value }) => (
   <div className="mt-4">
