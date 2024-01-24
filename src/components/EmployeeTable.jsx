@@ -63,7 +63,7 @@ export default function EmployeeTable({ employees, setEmployee }) {
       {employees.map((emp) => (
         <tr
           key={emp.id}
-          className={emp.id % 2 === 0 ? "bg-gray-100" : "bg-gray-200"}
+          className="odd:bg-gray-200 even:bg-gray-100"
         >
           <TableCell>{emp.id}</TableCell>
           <TableCell className="text-sm leading-5 text-gray-900">
