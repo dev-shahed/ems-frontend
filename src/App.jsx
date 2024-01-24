@@ -10,7 +10,8 @@ export default function App() {
           <Route path="" element={<EmployeeList />}></Route>
         </Routes>
         <Routes>
-          <Route path="/add-employee" element={<AddEmployee />}></Route>
+          <Route path="/add-employee" element={<AddEmployee />} />
+          <Route path="/update-employee/:id" element={<AddEmployee />} />
         </Routes>
       </BrowserRouter>
     </Fragment>

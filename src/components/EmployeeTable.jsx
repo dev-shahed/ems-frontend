@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { deleteEmployeeById } from "../services/EmployeeService";
 
@@ -21,6 +22,7 @@ const ActionCell = ({ children, type, iconClassName, onClick }) => (
 );
 
 export default function EmployeeTable({ employees, setEmployee }) {
+  const navigator = useNavigate();
   //handle delete an employee
   const handleDelete = ({ emp }) => {
     Swal.fire({
@@ -61,10 +63,7 @@ export default function EmployeeTable({ employees, setEmployee }) {
   return (
     <tbody className="bg-white">
       {employees.map((emp) => (
-        <tr
-          key={emp.id}
-          className="odd:bg-gray-200 even:bg-gray-100"
-        >
+        <tr key={emp.id} className="odd:bg-gray-200 even:bg-gray-100">
           <TableCell>{emp.id}</TableCell>
           <TableCell className="text-sm leading-5 text-gray-900">
             {emp.firstName}
@@ -77,7 +76,10 @@ export default function EmployeeTable({ employees, setEmployee }) {
           </TableCell>
           <ActionCell>
             <div className="flex items-center justify-center gap-6">
-              <a href="#" className="text-indigo-600 hover:text-indigo-900">
+              <Link to={`/update-employee/${emp.id}`}
+                type="button"
+                className="text-indigo-600 hover:text-indigo-900"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -92,7 +94,7 @@ export default function EmployeeTable({ employees, setEmployee }) {
                     d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                   />
                 </svg>
-              </a>
+              </Link>
 
               <button
                 type="button"

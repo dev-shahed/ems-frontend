@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { createEmployee } from "../services/EmployeeService";
+import {
+  createEmployee,
+  getEmployeeById,
+  updateEmployee,
+} from "../services/EmployeeService";
 
-const Input = ({ label, name, type, placeholder, onChange }) => (
+const Input = ({ label, name, type, placeholder, onChange, value }) => (
   <div className="mt-4">
     <label className="block text-sm font-bold text-gray-700" htmlFor={name}>
       {label}
@@ -14,6 +18,7 @@ const Input = ({ label, name, type, placeholder, onChange }) => (
       name={name}
       placeholder={placeholder}
       onChange={onChange}
+      value={value}
       required
     />
   </div>
@@ -21,6 +26,8 @@ const Input = ({ label, name, type, placeholder, onChange }) => (
 
 export default function AddEmployee() {
   const navigator = useNavigate();
+  const { id: employeeId } = useParams();
+  const [isUpdate, setIsUpdate] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -32,15 +39,35 @@ export default function AddEmployee() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      try {
+        if (employeeId) {
+          const response = await getEmployeeById(employeeId);
+          if (response.status == 200) {
+            setFormData(response.data);
+            setIsUpdate(true);
+          }
+        }
+      } catch (res) {
+        //alert();
+      }
+    };
+    fetchEmployee();
+  }, []);
+
   const saveEmployee = async (e) => {
+    const ACTION = isUpdate ? "Updated" : "Created";
     e.preventDefault();
     try {
-      const response = await createEmployee(formData);
-      if (response.status == 201) {
+      const response = isUpdate
+        ? await updateEmployee(employeeId, formData)
+        : await createEmployee(formData);
+      if ((response.status == 200) | 201) {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: "Employee created successfully",
+          title: `Employee ${ACTION} successfully`,
           showConfirmButton: false,
           timer: 1500,
         }).then(() => {
@@ -48,7 +75,7 @@ export default function AddEmployee() {
         });
       }
     } catch (error) {
-      console.error("Error creating employee:", error);
+      console.error(`Error ${ACTION} employee: `, error);
     }
   };
 
@@ -57,7 +84,7 @@ export default function AddEmployee() {
       <div className="px-6 py-8 mt-6 overflow-hidden bg-white rounded-lg lg:max-w-4xl">
         <div className="mb-4">
           <h1 className="font-serif text-2xl font-bold text-gray-800">
-            Adding an Employee
+            {isUpdate ? "Updating" : "Adding"} an Employee
           </h1>
         </div>
 
@@ -95,11 +122,12 @@ export default function AddEmployee() {
                 type="submit"
                 className="px-6 py-2 text-sm font-semibold text-white bg-indigo-500 rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300"
               >
-                Save
+                {isUpdate ? "Update" : "Save"}
               </button>
 
               <button
                 type="button"
+                onClick={() => navigator("/")}
                 className="px-6 py-2 text-sm font-semibold text-gray-800 bg-gray-200 rounded-md shadow-md hover:bg-gray-300 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300"
               >
                 Cancel

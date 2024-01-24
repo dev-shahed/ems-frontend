@@ -12,7 +12,15 @@ export const createEmployee = (employee) =>
   axios.post(REST_API_BASE_URL, employee);
 
 // Get employee by id and update it.
+export const getEmployeeById = async (employeeId) => {
+  return await axios.get(`${REST_API_BASE_URL}/${employeeId}`);
+};
 
 //Delete an employee...
 export const deleteEmployeeById = (employeeId) =>
   axios.delete(`${REST_API_BASE_URL}/${employeeId}`);
+
+// update an employee....
+export const updateEmployee = (employeeId, updatedEmployee) =>
+  axios.put(`${REST_API_BASE_URL}/${employeeId}`, updatedEmployee);
+  
