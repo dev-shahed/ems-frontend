@@ -32,46 +32,44 @@ export default function EmployeeList() {
   return (
     <>
       <div className="container mx-auto mt-8 max-w-7xl">
-        <div className="mb-4">
-          <h1 className="font-serif text-3xl font-bold decoration-gray-400">
+        <div className="flex flex-col items-center justify-between mb-2 sm:flex-row">
+          <h1 className="mb-2 text-xl font-bold sm:text-2xl lg:text-3xl decoration-gray-400 sm:mb-0">
             Employee List
           </h1>
-          <div className="flex justify-end">
-            <button
-              className="px-4 py-2 text-white bg-green-600 rounded-md hover:bg-green-500"
-              onClick={() => handleAddEmployee()}
-            >
-              Add Employee
-            </button>
-          </div>
+          <button
+            className="px-4 py-2 text-sm text-white bg-green-600 rounded-md sm:text-base lg:text-lg hover:bg-green-500 sm:px-3 sm:py-2"
+            onClick={() => handleAddEmployee()}
+          >
+            Add Employee
+          </button>
         </div>
+
         <div className="flex flex-col">
           <div className="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
               <table className="min-w-full">
                 <thead>
                   <tr>
-                    {[
-                      "ID",
-                      "First Name",
-                      "Last Name",
-                      "Email",
-                      "Action"
-                    ].map((header, index) => (
-                      <th
-                        key={index}
-                        className="px-6 py-3 text-xs font-bold tracking-wider text-center text-white uppercase bg-blue-500 border-b border-blue-700"
-                      >
-                        {header}
-                      </th>
-                    ))}
+                    {["ID", "First Name", "Last Name", "Email", "Action"].map(
+                      (header, index) => (
+                        <th
+                          key={index}
+                          className="px-6 py-3 text-xs font-bold tracking-wider text-center text-white uppercase bg-blue-500 border-b border-blue-700"
+                        >
+                          {header}
+                        </th>
+                      )
+                    )}
                   </tr>
                 </thead>
 
                 {isLoading ? (
                   <Skeleton />
                 ) : (
-                  <EmployeeTable employees={employee} setEmployee={setEmployee}/>
+                  <EmployeeTable
+                    employees={employee}
+                    setEmployee={setEmployee}
+                  />
                 )}
               </table>
             </div>
