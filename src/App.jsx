@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import Navbar from "./components/common/Navbar";
+import Department from "./components/department/Department";
 import AddEmployee from "./components/employee/AddEmployee";
 import EmployeeList from "./components/employee/EmployeeList";
 export default function App() {
@@ -16,6 +17,9 @@ export default function App() {
         <Routes>
           <Route path="/add-employee" element={<AddEmployee />} />
           <Route path="/update-employee/:id" element={<AddEmployee />} />
+        </Routes>
+        <Routes>
+          <Route path="/departments" element={<Department/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>
