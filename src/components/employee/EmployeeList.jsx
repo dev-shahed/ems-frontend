@@ -31,7 +31,7 @@ export default function EmployeeList() {
 
   return (
     <>
-      <div className="container mx-auto mt-8 max-w-7xl">
+      <div className="container mx-auto mt-8 max-w-7xl mb-28">
         <div className="flex flex-col items-center justify-between mb-2 sm:flex-row">
           <h1 className="mb-2 text-xl font-bold sm:text-2xl lg:text-3xl decoration-gray-400 sm:mb-0">
             Employee List
