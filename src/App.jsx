@@ -31,12 +31,11 @@ export default function App() {
     return (
       <Routes>
         <Route path="/" element={<EmployeeList />} />
-        <Route  path="add-employee" element={<AddEmployee />} />
+        <Route path="add-employee" element={<AddEmployee />} />
         <Route path="update-employee/:id" element={<AddEmployee />} />
       </Routes>
     );
   }
-
 
   //Route for Department..
   function DepartmentRoutes() {
