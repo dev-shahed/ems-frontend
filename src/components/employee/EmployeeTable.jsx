@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { deleteEmployeeById } from "../../services/EmployeeService";
 
@@ -22,7 +22,6 @@ const ActionCell = ({ children, type, iconClassName, onClick }) => (
 );
 
 export default function EmployeeTable({ employees, setEmployee }) {
-  const navigator = useNavigate();
   //handle delete an employee
   const handleDelete = ({ emp }) => {
     Swal.fire({
