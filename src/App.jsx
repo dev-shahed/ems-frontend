@@ -24,6 +24,7 @@ export default function App() {
     </Fragment>
   );
 
+  // Route for Employee
   function EmployeeRoutes() {
     return (
       <Routes>
@@ -34,6 +35,8 @@ export default function App() {
     );
   }
 
+
+  //Route for Department..
   function DepartmentRoutes() {
     return (
       <Routes>

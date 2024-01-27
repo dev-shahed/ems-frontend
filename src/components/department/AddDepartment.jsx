@@ -25,7 +25,7 @@ export default function AddDepartment() {
               id="departmentName"
               name="departmentName"
               placeholder="Department Name"
-              className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-100 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className={`${inputStyle}`}
             />
           </div>
           <div className="mb-5">
@@ -38,7 +38,7 @@ export default function AddDepartment() {
             <textarea
               id="description"
               rows="4"
-              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className={`${inputStyle}`}
               placeholder="Department Description..."
             ></textarea>
           </div>
