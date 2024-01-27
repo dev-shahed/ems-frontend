@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
-    createDep,
-    getDepById,
-    updateDep,
+  createDep,
+  getDepById,
+  updateDep,
 } from "../../services/DepartmentService";
 
 const inputStyle =
@@ -119,6 +119,7 @@ export default function AddDepartment() {
             </button>
             <button
               type="button"
+              onClick={() => navigator("/departments")}
               className="px-4 py-2 text-sm font-semibold text-gray-800 bg-gray-200 rounded-md shadow-md sm:px-6 md:text-base hover:bg-gray-300 focus:outline-none focus:border-indigo-900 focus:ring ring-indigo-300"
             >
               Cancel
