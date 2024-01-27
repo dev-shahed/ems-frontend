@@ -22,6 +22,7 @@ export default function DepartmentList() {
     };
     fetchData();
   }, []);
+  
 
   //Implement logic for adding a new employee
   const handleAddDep = () => {

@@ -9,3 +9,13 @@ export const getAllDepartments = () => axios.get(REST_API_BASE_URL);
 //Delete an Department...
 export const deleteDepById = (depId) =>
   axios.delete(`${REST_API_BASE_URL}/${depId}`);
+
+//get dep by id..
+export const getDepById = (depId) => axios.get(`${REST_API_BASE_URL}/${depId}`);
+
+//update a department..
+export const updateDep = (depId, updatedDep) =>
+  axios.put(`${REST_API_BASE_URL}/${depId}`, updatedDep);
+
+//create a department..
+export const createDep = (department) => axios.post(REST_API_BASE_URL, department);

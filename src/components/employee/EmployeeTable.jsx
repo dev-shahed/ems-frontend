@@ -75,7 +75,8 @@ export default function EmployeeTable({ employees, setEmployee }) {
           </TableCell>
           <ActionCell>
             <div className="flex items-center justify-center gap-6">
-              <Link to={`/update-employee/${emp.id}`}
+              <Link
+                to={`/update-employee/${emp.id}`}
                 type="button"
                 className="text-indigo-600 hover:text-indigo-900"
               >

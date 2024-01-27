@@ -54,7 +54,7 @@ export default function AddEmployee() {
       }
     };
     fetchEmployee();
-  }, []);
+  }, [employeeId]);
 
   const saveEmployee = async (e) => {
     const ACTION = isUpdate ? "Updated" : "Created";
