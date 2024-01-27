@@ -14,6 +14,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<EmployeeList />} />
           <Route path="add-employee" element={<AddEmployee />} />
+          <Route path="update-employee/:id" element={<AddEmployee />} />
+          <Route path="update-department/:id" element={<AddDepartment />} />
         </Routes>
         <Routes>
           <Route path="employees/*" element={<EmployeeRoutes />} />
@@ -29,7 +31,7 @@ export default function App() {
     return (
       <Routes>
         <Route path="/" element={<EmployeeList />} />
-        <Route path="add-employee" element={<AddEmployee />} />
+        <Route  path="add-employee" element={<AddEmployee />} />
         <Route path="update-employee/:id" element={<AddEmployee />} />
       </Routes>
     );
