@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getEmployee } from "../../services/EmployeeService";
+import IsEmpty from "../common/IsEmpty";
 import EmployeeTable from "./EmployeeTable";
 import Skeleton from "./Skeleton";
 
@@ -9,7 +10,6 @@ export default function EmployeeList() {
   const [employee, setEmployee] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const navigator = useNavigate();
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,6 +62,11 @@ export default function EmployeeList() {
                       )
                     )}
                   </tr>
+                  {employee.length <= 0 && !isLoading ? (
+                    <IsEmpty terms={"No Employee Exists!"} />
+                  ) : (
+                    isLoading
+                  )}
                 </thead>
 
                 {isLoading ? (

@@ -43,9 +43,7 @@ export default function DepartmentTable({ departments, setDepartments }) {
               icon: "success",
             });
             //updating state..
-            setDepartments((prevDep) =>
-              prevDep.filter((d) => d.id !== dep.id)
-            );
+            setDepartments((prevDep) => prevDep.filter((d) => d.id !== dep.id));
           })
           .catch((res) => {
             // Handle error if deletion fails
@@ -59,10 +57,12 @@ export default function DepartmentTable({ departments, setDepartments }) {
     });
   };
 
+
+
   return (
     <>
       <tbody className="bg-white">
-        {departments.map((dep) => (
+        {departments?.map((dep) => (
           <tr key={dep.id} className="odd:bg-gray-200 even:bg-gray-100">
             <TableCell>{dep.id}</TableCell>
             <TableCell className="text-sm leading-5 text-gray-900">

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllDepartments } from "../../services/DepartmentService";
+import IsEmpty from "../common/IsEmpty";
 import DepartmentTable from "./DepartmentTable";
 import Skeleton from "./Skeleton";
 
 export default function DepartmentList() {
-  const [departments, setDepartments] = useState({});
+  const [departments, setDepartments] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const navigator = useNavigate();
 
@@ -22,7 +23,6 @@ export default function DepartmentList() {
     };
     fetchData();
   }, []);
-  
 
   //Implement logic for adding a new employee
   const handleAddDep = () => {
@@ -44,25 +44,32 @@ export default function DepartmentList() {
           </button>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <div className="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
               <table className="min-w-full">
                 <thead>
                   <tr>
-                    {["ID", "Department Name", "Department Description", "Action"].map(
-                      (header, index) => (
-                        <th
-                          key={index}
-                          className="px-6 py-3 text-xs font-bold tracking-wider text-center text-white uppercase bg-blue-500 border-b border-blue-700"
-                        >
-                          {header}
-                        </th>
-                      )
-                    )}
+                    {[
+                      "ID",
+                      "Department Name",
+                      "Department Description",
+                      "Action",
+                    ].map((header, index) => (
+                      <th
+                        key={index}
+                        className="px-6 py-3 text-xs font-bold tracking-wider text-center text-white uppercase bg-blue-500 border-b border-blue-700"
+                      >
+                        {header}
+                      </th>
+                    ))}
                   </tr>
+                  {departments.length <= 0 && !isLoading ? (
+                    <IsEmpty terms={"No Department Exists!"} />
+                  ) : (
+                    isLoading
+                  )}
                 </thead>
-
                 {isLoading ? (
                   <Skeleton />
                 ) : (

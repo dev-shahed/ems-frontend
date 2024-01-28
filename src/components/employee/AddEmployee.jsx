@@ -1,26 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { getAllDepartments } from "../../services/DepartmentService";
 import {
   createEmployee,
   getEmployeeById,
   updateEmployee,
 } from "../../services/EmployeeService";
 
-const Input = ({ label, name, type, placeholder, onChange, value }) => (
+const Input = ({
+  label,
+  name,
+  type,
+  placeholder,
+  onChange,
+  value,
+  options,
+}) => (
   <div className="mt-4">
     <label className="block text-sm font-bold text-gray-700" htmlFor={name}>
       {label}
     </label>
-    <input
-      className="block w-full px-4 py-2 mt-1 border rounded-md shadow-sm placeholder:text-gray-400 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      onChange={onChange}
-      value={value}
-      required
-    />
+    {type === "select" ? (
+      <select
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required
+        className="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+      >
+        <option selected>Choose a Department</option>
+        {options.map((dep) => (
+          <option key={dep.id} value={dep.id}>
+            {dep.name}
+          </option>
+        ))}
+      </select>
+    ) : (
+      <input
+        type={type}
+        id={name}
+        name={name}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+        className="block w-full px-4 py-2 mt-1 border rounded-md shadow-sm placeholder:text-gray-400 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        required
+      />
+    )}
   </div>
 );
 
@@ -32,7 +60,23 @@ export default function AddEmployee() {
     firstName: "",
     lastName: "",
     email: "",
+    departmentId: "",
   });
+
+  //getting departments to select..
+  const [departments, setDepartments] = useState([]);
+  useEffect(() => {
+    const fetchAllDep = () => {
+      try {
+        getAllDepartments().then((res) => {
+          setDepartments(res.data);
+        });
+      } catch (error) {
+        console.error("error getting departments");
+      }
+    };
+    fetchAllDep();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -117,6 +161,14 @@ export default function AddEmployee() {
               onChange={handleInputChange}
             />
 
+            <Input
+              label="Select a Department"
+              name="departmentId"
+              type="select"
+              options={departments}
+              value={formData.departmentId}
+              onChange={handleInputChange}
+            />
             <div className="flex items-center justify-between mt-6">
               <button
                 type="submit"
