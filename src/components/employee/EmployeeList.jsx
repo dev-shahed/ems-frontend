@@ -11,6 +11,8 @@ export default function EmployeeList() {
   const [isLoading, setLoading] = useState(true);
   const navigator = useNavigate();
 
+  console.log(employee)
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);

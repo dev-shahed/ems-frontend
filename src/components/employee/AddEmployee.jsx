@@ -63,6 +63,8 @@ export default function AddEmployee() {
     departmentId: "",
   });
 
+  console.log(formData)
+
   //getting departments to select..
   const [departments, setDepartments] = useState([]);
   useEffect(() => {
